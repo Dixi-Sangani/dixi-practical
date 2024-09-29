@@ -53,10 +53,15 @@ Make sure you have the following installed:
    ```
    
 2. Install the dependencies:
+   ```bash
    flutter pub get
+   ```
 
 3. Run the application:
+   ```bash
    flutter run
+   ```
+
 
 ### Usage
 - **Add Entry**: Click the "+" button on the home screen to open a dialog for adding a new entry. Fill in the name and description, then click "Save".
@@ -64,3 +69,8 @@ Make sure you have the following installed:
 - **Edit Entry**: Click the pencil icon next to an entry to open the edit dialog. Make your changes and click "Update".
 
 - **Delete Entry**: Click the trash icon next to an entry to delete it.
+
+### For the run TestCase 
+```bash
+  flutter test integration_test/app_test.dart
+```

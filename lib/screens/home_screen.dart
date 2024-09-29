@@ -5,7 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+  HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +40,7 @@ class HomeScreen extends StatelessWidget {
                           icon: const Icon(Icons.delete, color: Colors.redAccent,),
                           onPressed: () {
                             BlocProvider.of<EntryBloc>(context).add(DeleteEntryEvent(entry.id!));
+                            showSnackBar('Entry deleted');
                           },
                         ),
                       ],
@@ -90,6 +92,7 @@ class HomeScreen extends StatelessWidget {
                 BlocProvider.of<EntryBloc>(context).add(
                   AddEntryEvent(nameController.text, descriptionController.text),
                 );
+                showSnackBar('Entry added');
                 Navigator.of(dialogContext).pop();
               },
             ),
@@ -132,6 +135,7 @@ class HomeScreen extends StatelessWidget {
                 BlocProvider.of<EntryBloc>(context).add(
                   UpdateEntryEvent(entry.id!, nameController.text, descriptionController.text),
                 );
+                showSnackBar('Entry updated');
                 Navigator.of(dialogContext).pop();
               },
             ),
@@ -142,6 +146,14 @@ class HomeScreen extends StatelessWidget {
           ],
         );
       },
+    );
+  }
+  void showSnackBar(String message) {
+    scaffoldMessengerKey.currentState?.showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: const Duration(seconds: 2),
+      ),
     );
   }
 }

@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter CRUD',
       home: BlocProvider(
         create: (context) => EntryBloc(DatabaseHelper())..add(LoadEntriesEvent()),
-        child: const HomeScreen(),
+        child: HomeScreen(),
       ),
     );
   }
